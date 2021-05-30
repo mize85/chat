@@ -14,15 +14,16 @@
   transition: opacity 1s ease-out;
 }
 
-.phx-disconnected{
+.phx-disconnected {
   cursor: wait;
 }
-.phx-disconnected *{
+
+.phx-disconnected * {
   pointer-events: none;
 }
 
 .phx-modal {
-  opacity: 1!important;
+  opacity: 1 !important;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -30,8 +31,8 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .phx-modal-content {
@@ -64,27 +65,33 @@
   border: 1px solid transparent;
   border-radius: 4px;
 }
+
 .alert-info {
   color: #31708f;
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
+
 .alert-warning {
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
 }
+
 .alert-danger {
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
 .alert p {
   margin-bottom: 0;
 }
+
 .alert:empty {
   display: none;
 }
+
 .invalid-feedback {
   color: #a94442;
   display: block;
@@ -92,21 +99,15 @@
 }
 
 
-
-
 #chat {
-  #chat-container{
+  #chat-container {
     display: flex;
     justify-content: space-between;
-    height: 500px;
+    height: calc(100vh - 300px);
 
     margin: 1em 0;
 
-    p{
-      margin: 0;
-    }
-
-    #chat-messages{
+    #chat-messages {
       flex-grow: 1;
       overflow-y: auto;
       border: 1px solid #ccc;
@@ -119,23 +120,25 @@
     }
   }
 
-  .user_img_msg{
+  .user_img_msg {
     height: 40px;
     width: 40px;
-    border:1.5px solid #f5f6fa;
+    border: 1.5px solid #f5f6fa;
 
   }
-  .img_cont{
+
+  .img_cont {
     position: relative;
     height: 70px;
     width: 70px;
   }
-  .img_cont_msg{
+
+  .img_cont_msg {
     height: 40px;
     width: 40px;
   }
 
-  .msg_container{
+  .msg_container {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
@@ -144,7 +147,8 @@
     padding: 10px;
     position: relative;
   }
-  .msg_container_send{
+
+  .msg_container_send {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
@@ -153,18 +157,26 @@
     padding: 10px;
     position: relative;
   }
-  .msg_time{
+
+  .msg_time {
     position: absolute;
     left: 0;
     bottom: -15px;
     color: #ccc;
     font-size: 10px;
+    white-space: nowrap;
   }
-  .msg_time_send{
+
+  .msg_time_send {
     position: absolute;
-    right:0;
+    right: 0;
     bottom: -15px;
     color: #ccc;
     font-size: 10px;
+    white-space: nowrap;
   }
+}
+
+.w-6 {
+  width: 1.5rem;
 }

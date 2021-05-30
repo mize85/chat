@@ -1,0 +1,30 @@
+<div class="px-4 py-5 my-5 text-center">
+	<div  style="min-height: 250px;" >
+		<div class="row">
+
+			<%= for list_id <- @lists do %>
+			<div class="my-2 px-4 col-md-6 col-lg-4 col-xl-3">
+				<div class="p-2 bg-light rounded h-full">
+					<h3 class="m-2 text-lg">List <%= list_id %></h3>
+
+					<div phx-hook="InitSortable" data-list-id="<%= list_id %>" >
+
+						<%= for task <- Enum.filter(@tasks, &(&1[:list_id] == list_id)) do %>
+						<div data-sortable-id="<%= task[:id] %>" class="cursor-move bg-white rounded flex p-4 my-1 items-center">
+							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+								<path d="M22 4L12 14.01l-3-3"></path>
+							</svg>
+							<span class="title-font font-medium"><%= task[:name] %></span>
+						</div>
+						<% end %>
+
+					</div>
+
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+

@@ -16,13 +16,18 @@ import {Socket} from "phoenix"
 import topbar from "topbar"
 import {LiveSocket} from "phoenix_live_view"
 import ChatContainer from "./hooks/chat_container"
+import {InitSortable} from "./hooks/init_sortable"
 
 import "bootstrap"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 
-let Hooks = {}
+let Hooks = {};
+
+
+
+Hooks.InitSortable = InitSortable
 Hooks.ChatContainer = ChatContainer;
 
 let liveSocket = new LiveSocket("/live", Socket, {

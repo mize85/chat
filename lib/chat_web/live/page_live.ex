@@ -8,7 +8,7 @@ defmodule ChatWeb.PageLive do
 
   @impl true
   def handle_event("random_room", _params, socket) do
-    slug = "/" <> MnemonicSlugs.generate_slug(4)
+    slug = "/chat/" <> MnemonicSlugs.generate_slug(4)
     {:noreply, push_redirect(socket, to: slug)}
   end
 end

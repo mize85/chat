@@ -1,11 +1,15 @@
 <div id="chat">
-	<p>Currently chatting in <strong><%= @room_id %></strong> as <strong><%= @current_user.username %></strong></p>
+	<p class="mt-4">Currently chatting in
+		<strong><%= @room_id %></strong> as
+		<img alt="user" src="<%= @current_user.avatar %>" class="rounded-circle user_img_msg">
+		<strong><%= @current_user.username %></strong>
+	</p>
 
 	<div id="chat-container">
 		<div id="chat-messages" phx-update="append" phx-hook="ChatContainer">
 			<%= for message <- @messages do %>
 			<%= render_message(message, @current_user, [locale: @locale, timezone: @timezone]) %>
-		<% end %>
+			<% end %>
 		</div>
 
 		<div id="user-list">

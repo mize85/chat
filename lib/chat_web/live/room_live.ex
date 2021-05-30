@@ -245,23 +245,8 @@ defmodule ChatWeb.RoomLive do
 
   def render_user_message(%{type: :user, user: %{username: username, avatar: avatar}} = message, %{username: name} = current_user, locale_opts)
       when username == name do
+
     ~E"""
-
-    <div id="<%= message.id %>" title="<%= message.user.username %>" class="d-flex justify-content-start mb-4">
-    <div class="img_cont_msg">
-    <img  alt="<%= message.user.username %>" src="<%= avatar %>" class="rounded-circle user_img_msg">
-    </div>
-    <div class="msg_container">
-    <%= message.body %>
-    <span class="msg_time"><%= Chat.Cldr.format_time(message.created_at, locale_opts) %></span>
-    </div>
-    </div>
-    """
-  end
-
-  def render_user_message(%{type: :user, user: %{avatar: avatar}} = message, current_user, locale_opts) do
-    ~E"""
-
     <div id="<%= message.id %>" title="<%= message.user.username %>" class="d-flex justify-content-end mb-4">
     <div class="msg_container_send">
     <%= message.body %>
@@ -272,6 +257,22 @@ defmodule ChatWeb.RoomLive do
     </div>
     </div>
     """
+  end
+
+  def render_user_message(%{type: :user, user: %{avatar: avatar}} = message, current_user, locale_opts) do
+    ~E"""
+    <div id="<%= message.id %>" title="<%= message.user.username %>" class="d-flex justify-content-start mb-4">
+    <div class="img_cont_msg">
+    <img  alt="<%= message.user.username %>" src="<%= avatar %>" class="rounded-circle user_img_msg">
+    </div>
+    <div class="msg_container">
+    <%= message.body %>
+    <span class="msg_time"><%= Chat.Cldr.format_time(message.created_at, locale_opts) %></span>
+    </div>
+    </div>
+    """
+
+
   end
 
 end

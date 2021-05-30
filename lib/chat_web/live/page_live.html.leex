@@ -1,1 +1,24 @@
-<button type="button" phx-click="random_room" title="Create a random room">Create a random room</button>
+<div class="row">
+	<div class="col-md-6">
+		<div class="px-4 py-5 my-5 text-center">
+			<div class="col-lg-6 mx-auto">
+				<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+					<button phx-click="random_room" type="button" class="btn btn-primary btn-lg px-4 gap-3">Create a random room!</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="px-4 py-5 my-5 text-center">
+			<div class="col-lg-6 mx-auto">
+				<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+					<%= live_patch "Board!", to: Routes.live_path(@socket, ChatWeb.BoardLive), type: "button", class: "btn btn-primary btn-lg px-4 gap-3" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
