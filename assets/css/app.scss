@@ -1,5 +1,7 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
@@ -89,26 +91,80 @@
   margin: -1rem 0 2rem;
 }
 
-#chat-container{
-  display: flex;
-  justify-content: space-between;
-  height: 500px;
 
-  margin: 1em 0;
 
-  p{
-    margin: 0;
+
+#chat {
+  #chat-container{
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+
+    margin: 1em 0;
+
+    p{
+      margin: 0;
+    }
+
+    #chat-messages{
+      flex-grow: 1;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 1em;
+    }
+
+    #user-list {
+      overflow-y: auto;
+      margin-left: 1em;
+    }
   }
 
-  #chat-messages{
-    flex-grow: 1;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 1em;
+  .user_img_msg{
+    height: 40px;
+    width: 40px;
+    border:1.5px solid #f5f6fa;
+
+  }
+  .img_cont{
+    position: relative;
+    height: 70px;
+    width: 70px;
+  }
+  .img_cont_msg{
+    height: 40px;
+    width: 40px;
   }
 
-  #user-list {
-    overflow-y: auto;
-    margin-left: 1em;
+  .msg_container{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #82ccdd;
+    padding: 10px;
+    position: relative;
+  }
+  .msg_container_send{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: #78e08f;
+    padding: 10px;
+    position: relative;
+  }
+  .msg_time{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    color: #ccc;
+    font-size: 10px;
+  }
+  .msg_time_send{
+    position: absolute;
+    right:0;
+    bottom: -15px;
+    color: #ccc;
+    font-size: 10px;
   }
 }

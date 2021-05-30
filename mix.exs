@@ -48,6 +48,8 @@ defmodule Chat.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:mnemonic_slugs, "~> 0.0.3"},
+      {:timex, "~> 3.6"},
+      {:ex_cldr_dates_times, "~> 2.0"},
     ]
   end
 
