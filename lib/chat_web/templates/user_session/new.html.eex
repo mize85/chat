@@ -1,0 +1,35 @@
+<div class="px-4 py-5 my-5 card">
+	<h1>Log in</h1>
+
+	<%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
+	<%= if @error_message do %>
+	<div class="alert alert-danger">
+		<p><%= @error_message %></p>
+	</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= label f, :email, class: "form-label" %>
+		<%= email_input f, :email, required: true, class: "form-control" %>
+	</div>
+
+	<div class="mb-3">
+		<%= label f, :password, class: "form-label" %>
+		<%= password_input f, :password, required: true, class: "form-control" %>
+	</div>
+
+	<div class="mb-3">
+		<%= label f, :remember_me, "Keep me logged in for 60 days", class: "form-label" %>
+		<%= checkbox f, :remember_me, class: "form-check-input" %>
+	</div>
+
+	<div class="mb-3">
+		<%= submit "Log in", class: "btn btn-primary" %>
+	</div>
+	<% end %>
+
+	<p>
+		<%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+		<%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+	</p>
+</div>

@@ -7,9 +7,20 @@ defmodule ChatWeb.RoomLive do
   @default_timezone_offset 0
 
   @impl true
-  def mount(%{"id" => room_id}, _session, socket) do
-    username = MnemonicSlugs.generate_slug(1)
+  def mount(%{"id" => room_id}, %{"user_token" => user_token}, socket) do
+
+    socket = %{
+      assigns: %{
+        current_user: %{email: email} = current_user
+      }
+    } = assign_new(socket, :current_user, fn -> Chat.Accounts.get_user_by_session_token(user_token) end)
+
     avatar = "https://i.pravatar.cc/40?img=#{Enum.random(1..70)}"
+    current_user = Map.merge(current_user, %{avatar: avatar, username: email})
+
+
+    username = email
+
     topic = "room:" <> room_id
     if connected?(socket) do
       ChatWeb.Endpoint.subscribe(topic)
@@ -35,7 +46,7 @@ defmodule ChatWeb.RoomLive do
       |> assign_timezone_offset()
       |> assign(
            room_id: room_id,
-           current_user: %{username: username, avatar: avatar},
+           current_user: current_user,
            users: [],
            topic: topic,
            message: "",
@@ -109,7 +120,9 @@ defmodule ChatWeb.RoomLive do
         %{
           assigns: %{
             topic: topic,
-            current_user: %{username: username}
+            current_user: %{
+              username: username
+            }
           } = assigns
         } = socket
       ) do
@@ -208,12 +221,15 @@ defmodule ChatWeb.RoomLive do
     }
   end
 
+  @impl true
   def terminate(
         reason,
         %{
           assigns: %{
             topic: topic,
-            current_user: %{username: username}
+            current_user: %{
+              username: username
+            }
           }
         } = socket
       ) do
@@ -243,7 +259,17 @@ defmodule ChatWeb.RoomLive do
     render_user_message(message, current_user, locale_opts)
   end
 
-  def render_user_message(%{type: :user, user: %{username: username, avatar: avatar}} = message, %{username: name} = current_user, locale_opts)
+  def render_user_message(
+        %{
+          type: :user,
+          user: %{
+            username: username,
+            avatar: avatar
+          }
+        } = message,
+        %{username: name} = current_user,
+        locale_opts
+      )
       when username == name do
 
     ~E"""
@@ -259,7 +285,16 @@ defmodule ChatWeb.RoomLive do
     """
   end
 
-  def render_user_message(%{type: :user, user: %{avatar: avatar}} = message, current_user, locale_opts) do
+  def render_user_message(
+        %{
+          type: :user,
+          user: %{
+            avatar: avatar
+          }
+        } = message,
+        current_user,
+        locale_opts
+      ) do
     ~E"""
     <div id="<%= message.id %>" title="<%= message.user.username %>" class="d-flex justify-content-start mb-4">
     <div class="img_cont_msg">

@@ -33,6 +33,7 @@ defmodule Chat.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
@@ -50,6 +51,7 @@ defmodule Chat.MixProject do
       {:mnemonic_slugs, "~> 0.0.3"},
       {:timex, "~> 3.6"},
       {:ex_cldr_dates_times, "~> 2.0"},
+      {:phx_gen_auth, "~> 0.7", only: [:dev], runtime: false},
     ]
   end
 
